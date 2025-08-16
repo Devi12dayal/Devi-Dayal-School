@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Devi Dayal Senior Secondary Sanskrit School</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #0056b3;
+            --secondary: #003366;
+            --accent: #ffc107;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f5f5;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile Menu Button */
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fae5bb76-40e3-4b5e-bc19-067e7087280e.png') center/cover no-repeat;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:hover {
+            background-color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* About Section */
+        .about {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .about-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        /* Announcements */
+        .announcements {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 4rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .announcements h2 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .announcement-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light);
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .announcement-date {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            min-width: 80px;
+            text-align: center;
+            height: fit-content;
+        }
+        
+        /* Events Section */
+        .events {
+            margin-bottom: 4rem;
+        }
+        
+        .events h2 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .event-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .event-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .event-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .event-card:hover .event-image img {
+            transform: scale(1.1);
+        }
+        
+        .event-content {
+            padding: 1.5rem;
+        }
+        
+        .event-date {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .event-content h3 {
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-logo {
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .footer-links h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about {
+                flex-direction: column;
+            }
+            
+            .about-image, .about-content {
+                flex: none;
+                width: 100%;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .menu-btn {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+            
+            main {
+                padding: 0 1rem;
+            }
+            
+            .hero {
+                height: 350px;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.5rem;
+            }
+        }
+    
+/* Admission Banner (separate section) */
+.admission-banner { margin: 1.5rem 0 3rem; }
+.admission-banner .banner-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.admission-banner img { width: 100%; height: auto; display: block; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+
+/* Video Section */
+.school-video { margin: 2rem 0 3rem; }
+.school-video .video-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+<div class="header-container">
+<div class="logo">
+<img alt="Devi Dayal Senior Secondary Sanskrit School logo" src="1000059468.jpg"/>
+<div class="logo-text">
+<h1>Devi Dayal Senior Secondary Sanskrit School</h1>
+<p>[Recognized by UP Government]</p>
+</div>
+</div>
+<button class="menu-btn" id="menuBtn">
+<i class="fas fa-bars"></i>
+</button>
+<nav>
+<ul id="navMenu">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#academics">Academics</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<!-- Main Content -->
+<main>
+<!-- Hero Section -->
+<section class="hero" id="home">
+<h2>Empowering Future Leaders</h2>
+<p>At Devi Dayal Senior Secondary Sanskrit School, we provide quality education that nurtures intellectual curiosity, critical thinking, and character development for students from kindergarten through high school.</p>
+<a class="btn" href="#contact">Enroll Now</a>
+</section><section class="admission-banner"><div class="banner-container"><img alt="Admission Open Banner" src="1000025864.jpg"/></div></section><section class="school-video"><div class="video-container"><video controls="True" muted="" playsinline="" src="1000059441.mp4" style="width:100%; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.15);"></video></div></section>
+<!-- About Section -->
+<section class="about" id="about">
+<div class="about-image">
+<img alt="School building" src="c822608d-cd77-435e-adce-153b09380691.png"/>
+</div>
+<div class="about-content">
+<h2>About Our School</h2>
+<p>Established in 1979, Devi Dayal Senior Secondary Sanskrit School has been a pillar of academic excellence in our community. We serve students from diverse backgrounds with a commitment to providing high-quality education that prepares them for college and beyond.</p>
+<p>Our state-of-the-art facilities include modern classrooms, science labs, a library, and sports facilities. We offer a balanced curriculum that emphasizes both academic rigor and extracurricular activities.</p>
+<p>Our certified teachers bring expertise and passion to their subjects, creating engaging learning experiences that inspire students to excel.</p>
+</div>
+</section>
+<!-- Features Section -->
+<section class="features">
+<div class="feature-card">
+<div class="feature-icon">
+<i class="fas fa-graduation-cap"></i>
+</div>
+<h3>Academic Excellence</h3>
+<p>Consistently ranked among the top schools in the region with a 98% college acceptance rate.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">
+<i class="fas fa-microscope"></i>
+</div>
+<h3>STEM Programs</h3>
+<p>Innovative science, technology, engineering, and mathematics programs with well-equipped labs.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">
+<i class="fas fa-music"></i>
+</div>
+<h3>Arts Education</h3>
+<p>Comprehensive arts curriculum including music, visual arts, drama, and dance.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">
+<i class="fas fa-running"></i>
+</div>
+<h3>Athletics</h3>
+<p>Competitive sports programs and physical education to promote teamwork and healthy lifestyles.</p>
+</div>
+</section>
+<!-- Announcements Section -->
+<section class="announcements">
+<h2>Latest Announcements</h2>
+<div class="announcement-item"><div class="announcement-date"><span>May 1</span></div><div class="announcement-content"><h4>Admission Open for 2025-2026</h4><p>Admissions for the academic year 2025-2026 are now open. Apply early to secure your seat.</p></div></div></section>
+<!-- Events Section -->
+
+</main>
+<!-- Footer -->
+<footer id="contact">
+<div class="footer-container">
+<div class="footer-links">
+<div class="footer-logo">
+<img alt="Devi Dayal Senior Secondary Sanskrit School logo" src="1000059468.jpg"/>
+</div>
+<p>Devi Dayal Senior Secondary Sanskrit School provides quality education with emphasis on Sanskrit and traditional Indian knowledge systems.</p>
+<div class="social-links">
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+<a href="#"><i class="fab fa-twitter"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-youtube"></i></a>
+</div>
+</div>
+<div class="footer-links">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">About Us</a></li>
+<li><a href="#">Academics</a></li>
+<li><a href="#">Admissions</a></li>
+<li><a href="#">Events</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h3>Academics</h3>
+<ul>
+<li><a href="#">Elementary School</a></li>
+<li><a href="#">Middle School</a></li>
+<li><a href="#">High School</a></li>
+<li><a href="#">Curriculum</a></li>
+<li><a href="#">Extracurriculars</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h3>Contact Info</h3>
+<div class="contact-info">
+<div class="contact-item">
+<i class="fas fa-map-marker-alt"></i>
+<span>Chirori Road, Loni, Ghaziabad, Uttar Pradesh 201102</span>
+</div>
+<div class="contact-item">
+<i class="fas fa-phone"></i>
+<span>8630543030</span>
+</div>
+<div class="contact-item">
+<i class="fas fa-envelope"></i>
+<span>pddihe@gmail.com</span>
+</div>
+<div class="contact-item">
+<i class="fas fa-clock"></i>
+<span>Mon-Sat: 8:00 AM - 3:00 PM</span>
+</div>
+</div>
+</div>
+</div>
+<div class="copyright">
+<p>© 2023 Devi Dayal Senior Secondary Sanskrit School. All Rights Reserved.</p>
+</div>
+</footer>
+<!-- JavaScript -->
+<script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navMenu.classList.contains('show')) {
+                        navMenu.classList.remove('show');
+                    }
+                }
+            });
+        });
+        
+        // Animation on Scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.feature-card, .about-image, .event-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Initialize animations
+        window.addEventListener('load', () => {
+            const animatedElements = document.querySelectorAll('.feature-card, .about-image, .event-card');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // First animation after slight delay
+            setTimeout(() => {
+                animateOnScroll();
+            }, 100);
+        });
+        
+        // Run animation on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>
